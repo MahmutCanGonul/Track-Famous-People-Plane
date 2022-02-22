@@ -2,7 +2,7 @@
 Track Famous People Plane With Python
 
 
-In this code you can check that famous people going to which place with plane. Also if they are living in this your search time you can follow every seconds rotation.
+In this code you can check that famous people going to which place with plane. If the flight has live data, you can instantly observe the departure of the aircraft.
 
 Which celebrities can you follow?:
 
