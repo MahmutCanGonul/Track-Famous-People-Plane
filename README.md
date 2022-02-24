@@ -41,6 +41,9 @@ John Travolta:
 
 ![image](https://user-images.githubusercontent.com/75094927/155206938-d2a7276e-998c-422b-a4ec-31a842041c36.png)
 
+Jeff Bezos:
+
+![image](https://user-images.githubusercontent.com/75094927/155568307-38ea1673-444a-47d7-82d2-9f31f8d3c2df.png)
 
 
  
