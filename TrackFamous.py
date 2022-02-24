@@ -7,7 +7,7 @@ import webbrowser
 data = {'Elon Musk':'https://opensky-network.org/aircraft-profile?icao24=a835af','Bill Gates':'https://opensky-network.org/aircraft-profile?icao24=ac39d6',
         'Michael Jordan':'https://opensky-network.org/aircraft-profile?icao24=a21fe6','Taylor Swift':'https://opensky-network.org/aircraft-profile?icao24=ac64c6',
         'John Travolta':'https://opensky-network.org/aircraft-profile?icao24=a96f69','Jim Carry':'https://opensky-network.org/aircraft-profile?icao24=a0f9e7',
-        'Donald Trump':'https://opensky-network.org/aircraft-profile?icao24=aa3410'}
+        'Donald Trump':'https://opensky-network.org/aircraft-profile?icao24=aa3410','Jeff Bezos':'https://opensky-network.org/aircraft-profile?icao24=a2aa92'}
 
 
 
