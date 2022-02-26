@@ -98,11 +98,24 @@ Jeff Bezos:
       except Exception as ex:
           print(ex)
         
-      
+    
+    
+OUTPUT:
+
+💣Output is given json data about famous people flights
+
+![FlightHistory](https://user-images.githubusercontent.com/75094927/155841779-50b043dd-0e1d-4df1-a215-a2cf85e7f7a1.png)
+
+    
+    
+    
+    
+    
 References:
  
  https://opensky-network.org/
 
+https://rapidapi.com/aedbx-aedbx/api/aerodatabox/
 
 
 
