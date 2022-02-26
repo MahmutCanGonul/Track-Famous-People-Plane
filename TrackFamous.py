@@ -26,8 +26,6 @@ register_code_data = {'Elon Musk':'N628TS','Bill Gates':'N887WM',
         'Alan Sugar':'G-SUGA'}
 
 
- 
-
 
 def calling_flights(country):
     lon_min,lat_min=28.741951,41.261297
@@ -68,7 +66,7 @@ def datetime_flight_info(callSign,date):
     return result
 
 def show_plane(callSign):
-    url = "https://aerodatabox.p.rapidapi.com/aircrafts/reg/N887WM/image/beta"
+    url = f"https://aerodatabox.p.rapidapi.com/aircrafts/reg/{callSign}/image/beta"
 
     headers = {
     'x-rapidapi-host': "aerodatabox.p.rapidapi.com",
@@ -137,6 +135,8 @@ while True:
                  url_data = show_plane(register_code_data[split_data[1]])
                  if url_data:
                      webbrowser.open(url_data)
+                 else:
+                     print("There is no image on Plane.")
                  isTrueChoice = True
                  break
          if isTrueChoice == False:
