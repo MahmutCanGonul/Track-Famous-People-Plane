@@ -15,13 +15,18 @@ import datetime
 data = {'Elon Musk':'https://opensky-network.org/aircraft-profile?icao24=a835af','Bill Gates':'https://opensky-network.org/aircraft-profile?icao24=ac39d6',
         'Michael Jordan':'https://opensky-network.org/aircraft-profile?icao24=a21fe6','Taylor Swift':'https://opensky-network.org/aircraft-profile?icao24=ac64c6',
         'John Travolta':'https://opensky-network.org/aircraft-profile?icao24=a96f69','Jim Carry':'https://opensky-network.org/aircraft-profile?icao24=a0f9e7',
-        'Donald Trump':'https://opensky-network.org/aircraft-profile?icao24=aa3410','Jeff Bezos':'https://opensky-network.org/aircraft-profile?icao24=a2aa92'}
+        'Donald Trump':'https://opensky-network.org/aircraft-profile?icao24=aa3410','Jeff Bezos':'https://opensky-network.org/aircraft-profile?icao24=a2aa92',
+        'Alan Sugar':'https://opensky-network.org/aircraft-profile?icao24=acb4c7'}
 
 
 register_code_data = {'Elon Musk':'N628TS','Bill Gates':'N887WM',
         'Michael Jordan':'N236MJ','Taylor Swift':'N898TS',
         'John Travolta':'N707JT','Jim Carry':'N162JC',
-        'Donald Trump':'N757AF','Jeff Bezos':'N271DV'}
+        'Donald Trump':'N757AF','Jeff Bezos':'N271DV',
+        'Alan Sugar':'G-SUGA'}
+
+
+ 
 
 
 def calling_flights(country):
@@ -62,7 +67,22 @@ def datetime_flight_info(callSign,date):
         result = json_data
     return result
 
-        
+def show_plane(callSign):
+    url = "https://aerodatabox.p.rapidapi.com/aircrafts/reg/N887WM/image/beta"
+
+    headers = {
+    'x-rapidapi-host': "aerodatabox.p.rapidapi.com",
+    'x-rapidapi-key': "843406cdb2msh623e555d8416d8ep1d7e8ajsnb9afd7d794c4"
+    }
+
+    response = requests.request("GET", url, headers=headers)
+    result = None
+    if response.text:
+        if 'url' in response.text:
+            result = response.json()['url']
+    return result
+            
+            
 
 print(f"We have {len(data)} Famous Plane!")
 
@@ -99,14 +119,24 @@ while True:
                              if 'greatCircleDistance' in re:
                                  great_circle_distance.append(re['greatCircleDistance'])
                      date = date - datetime.timedelta(1)
-                     
-                 for i in range(len(flight_info)):
-                     print(flight_info[i])
-                 print("Great Circle Distances: ")
-                 for i in range(len(great_circle_distance)):
-                     print(f"{i+1} ==> {great_circle_distance[i]}")
-                    
+                 
+                 if len(flight_info) > 0:
+                     temp=0
+                     for i in range(len(flight_info)):
+                         print(f"{i+1} ==> {flight_info[i]}")
+                         temp+=1
+                         if temp == 2:
+                             print()
+                             temp=0
+                     print("Great Circle Distances: ")
+                     for i in range(len(great_circle_distance)):
+                         print(f"{i+1} ==> {great_circle_distance[i]}")
+                 else:
+                     print("There is no flight data on last 7 days!")
                  webbrowser.open(data[split_data[1]])
+                 url_data = show_plane(register_code_data[split_data[1]])
+                 if url_data:
+                     webbrowser.open(url_data)
                  isTrueChoice = True
                  break
          if isTrueChoice == False:
