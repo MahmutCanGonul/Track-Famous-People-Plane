@@ -16,18 +16,20 @@ data = {'Elon Musk':'https://opensky-network.org/aircraft-profile?icao24=a835af'
         'Michael Jordan':'https://opensky-network.org/aircraft-profile?icao24=a21fe6','Taylor Swift':'https://opensky-network.org/aircraft-profile?icao24=ac64c6',
         'John Travolta':'https://opensky-network.org/aircraft-profile?icao24=a96f69','Jim Carry':'https://opensky-network.org/aircraft-profile?icao24=a0f9e7',
         'Donald Trump':'https://opensky-network.org/aircraft-profile?icao24=aa3410','Jeff Bezos':'https://opensky-network.org/aircraft-profile?icao24=a2aa92',
-        'Alan Sugar':'https://opensky-network.org/aircraft-profile?icao24=acb4c7'}
+        'Alan Sugar':'https://opensky-network.org/aircraft-profile?icao24=acb4c7','Vladamir Putin':''}
 
 
 register_code_data = {'Elon Musk':'N628TS','Bill Gates':'N887WM',
         'Michael Jordan':'N236MJ','Taylor Swift':'N898TS',
         'John Travolta':'N707JT','Jim Carry':'N162JC',
         'Donald Trump':'N757AF','Jeff Bezos':'N271DV',
-        'Alan Sugar':'G-SUGA'}
+        'Alan Sugar':'G-SUGA','Vladamir Putin':'RSD073'}
 
-
+         
+ 
 
 def calling_flights(country):
+    options = []
     lon_min,lat_min=28.741951,41.261297
     lon_max,lat_max=28.741951,41.261297
     user_name='USERNAME'
@@ -45,7 +47,21 @@ def calling_flights(country):
     if len(data) > 0:
         print(len(data))
         for i in range(len(data)):
-            print(data[i])
+            options.append(i+1)
+            print(f"{i+1} ==> {data[i]}")
+        while True:
+            your_choice = input("Which track plane enter a number: ")
+            url = 'https://globe.adsbexchange.com/?icao='
+            if your_choice:
+                for i in range(len(options)):
+                    if your_choice == str(options[i]):
+                        url = url + str(data[options[i]-1][0])
+                        webbrowser.open(url)
+                        break
+            if your_choice == "-1":
+                break
+        
+        
     else:
         print("I can not a find a flight!")
         
@@ -80,8 +96,6 @@ def show_plane(callSign):
             result = response.json()['url']
     return result
             
-            
-
 print(f"We have {len(data)} Famous Plane!")
 
 
@@ -98,7 +112,7 @@ while True:
           counts.append(str(count)+","+str(key))
           print(f"'{count}' ==> Check {key} Jet")
      count+=2
-     print(f"'{count-1}' ==> Track Plane from Call Sign ID")
+     print(f"'{count-1}' ==> Track Plane from Country")
      print(f"'{count}' ==> exit")
      try:
          choice = int(input("Enter a choice: "))
@@ -131,7 +145,8 @@ while True:
                          print(f"{i+1} ==> {great_circle_distance[i]}")
                  else:
                      print("There is no flight data on last 7 days!")
-                 webbrowser.open(data[split_data[1]])
+                 if len(data[split_data[1]]) > 1:
+                     webbrowser.open(data[split_data[1]])
                  url_data = show_plane(register_code_data[split_data[1]])
                  if url_data:
                      webbrowser.open(url_data)
@@ -143,7 +158,7 @@ while True:
              if choice == count:
                  break
              elif choice == count-1:
-                 callSign = input("Enter a Call Sign of Flight: ")
+                 callSign = input("Enter a Country of Flight: ")
                  if callSign:
                      calling_flights(callSign)
              else:
